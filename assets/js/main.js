@@ -28,6 +28,69 @@ const P = [
 ];
 const pad = n => String(n).padStart(2,"0");
 
+/* ---------------- case studies ----------------
+   Each project page is a cover image plus a list of blocks:
+   text    {h, p}                     section label + one paragraph
+   full    {k, c, r}                  one wide image
+   grid    {r, items, scroll}         images in a row (scroll = swipe strip on phones)
+   ba      {a, b}                     before / after pair
+   phones  {h, items}                 vertical Stories / Reels in phone frames
+   palette {sw:[{n, hex}]}            brand colours
+   split   {k, c, r, h, p, flip}      image beside text
+   post    {who, text, h, p}          Instagram caption beside text
+   k is a media key (assets/js/media.js). demo:true shows the "Demo media" tag.
+   All copy and media below are demo placeholders: replace them with the real work. */
+const CASE = {
+  dulight:{demo:true, cover:"dulight-cover", blocks:[
+    {t:"text", h:"The brief", p:"DuLight makes LED lighting in Dubai. The rebrand covered the whole identity: a new mark, a brand voice, and a system that holds up on signage, packaging and print."},
+    {t:"ba", a:{k:"dulight-old", c:"Previous mark"}, b:{k:"dulight-new", c:"New mark"}},
+    {t:"text", h:"The mark", p:"The new mark is a single arc of light. It reads at sign scale and still works as a small icon on a product label."},
+    {t:"palette", sw:[{n:"Night", hex:"#0C0D10"},{n:"Graphite", hex:"#1F2127"},{n:"Amber", hex:"#FFCD6E"},{n:"Warm white", hex:"#F6EBD3"}]},
+    {t:"full", k:"dulight-system", c:"Stationery system", r:"21/9"},
+    {t:"grid", r:"3/4", items:[{k:"dulight-signage", c:"Showroom signage"},{k:"dulight-pack", c:"Product packaging"}]}
+  ]},
+  zee:{demo:true, cover:"zee-cover", blocks:[
+    {t:"text", h:"The brief", p:"Zee Real Estate needed a brand foundation before it could post anything. The visual system came first, then carousels, Stories, Reels and event material built on it."},
+    {t:"full", k:"zee-board", c:"Brand foundation: colour, type and monogram"},
+    {t:"text", h:"Social system", p:"One grid, one type scale and two colours, so every carousel and Story looks like it came from the same brand."},
+    {t:"grid", r:"4/5", scroll:true, items:[{k:"zee-slide-1", c:"Carousel, slide 1"},{k:"zee-slide-2", c:"Carousel, slide 2"},{k:"zee-slide-3", c:"Carousel, slide 3"}]},
+    {t:"phones", h:"Stories and Reels", items:[{k:"zee-story-1", c:"Story"},{k:"zee-story-2", c:"Story"},{k:"zee-story-3", c:"Reel cover"}]},
+    {t:"full", k:"zee-event", c:"Launch event backdrop and banners"}
+  ]},
+  ethra:{demo:true, cover:"ethra-cover", blocks:[
+    {t:"text", h:"The brief", p:"Celestial Collection is five scents, each tied to its own place in Dubai. Every scent needed its own look while still reading as one collection."},
+    {t:"grid", r:"3/4", scroll:true, items:[{k:"ethra-elysia", c:"Elysia"},{k:"ethra-selene", c:"Selene"},{k:"ethra-nox", c:"Nox"},{k:"ethra-sola", c:"Sola"},{k:"ethra-helios", c:"Helios"}]},
+    {t:"text", h:"Reels", p:"Vertical cuts for Instagram, shot in the same locations and colour grades as the stills."},
+    {t:"phones", h:"Campaign reels", items:[{k:"ethra-reel-1", c:"Nox reel"},{k:"ethra-reel-2", c:"Helios reel"}]}
+  ]},
+  mirage:{demo:true, cover:"mirage-cover", blocks:[
+    {t:"text", h:"The project", p:"Exterior and interior renders for Nadan Serenity, from the aerial view of the community down to single rooms."},
+    {t:"full", k:"mirage-aerial", c:"Aerial view", r:"21/9"},
+    {t:"text", h:"Interiors", p:"Warm, natural materials and soft daylight, kept consistent from room to room."},
+    {t:"grid", r:"3/4", items:[{k:"mirage-living", c:"Living room"},{k:"mirage-bedroom", c:"Master bedroom"}]},
+    {t:"full", k:"mirage-night", c:"Exterior at dusk"}
+  ]},
+  connectin:{demo:true, cover:"connectin-cover", blocks:[
+    {t:"text", h:"The brief", p:"Setting up a company in Dubai takes a lot of steps. The goal was Instagram content that explains them simply, one carousel at a time."},
+    {t:"grid", r:"4/5", scroll:true, items:[
+      {k:"connectin-slide-1", c:"Slide 1", n:"01", o:"Mainland or free zone?"},
+      {k:"connectin-slide-2", c:"Slide 2", n:"02", o:"Pick your business activity"},
+      {k:"connectin-slide-3", c:"Slide 3", n:"03", o:"Get your trade licence"},
+      {k:"connectin-slide-4", c:"Slide 4", n:"04", o:"Visas and a bank account"}]},
+    {t:"post", who:"ConnectIn Business Services", h:"Captions", p:"Each carousel ships with a caption that repeats the steps in plain words and ends with one clear next step.",
+     text:"Thinking about starting a business in Dubai? Here is the short version:\n\n1. Choose mainland or free zone\n2. Pick your business activity\n3. Get your trade licence\n4. Sort out visas and your bank account\n\nSave this for later, and send us a DM if you want help with any step."}
+  ]},
+  maash:{demo:true, cover:"maash-cover", blocks:[
+    {t:"text", h:"The work", p:"Brand identity, a guidelines PDF and packaging for a henna brand, all built around one fine line pattern."},
+    {t:"full", k:"maash-pack", c:"Packaging range"},
+    {t:"palette", sw:[{n:"Henna", hex:"#5B220F"},{n:"Terracotta", hex:"#A5532A"},{n:"Kraft", hex:"#C9A27A"},{n:"Cream", hex:"#F8E7D7"}]},
+    {t:"split", k:"maash-bag", c:"Paper shopping bag", r:"3/4", h:"Shopping bag", p:"The bag carries the henna line pattern in a single colour, so it prints cleanly and is still recognisable from across a room."},
+    {t:"full", k:"maash-guide", c:"Brand guidelines PDF"}
+  ]}
+};
+const MEDIA = window.MEDIA || {};
+const src = k => MEDIA[k] || `assets/img/projects/${k}.webp`;
+
 /* ---------------- helpers ---------------- */
 const $ = s => document.querySelector(s);
 const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
@@ -167,17 +230,39 @@ $("#next").addEventListener("click",()=>{ setActive(active+1); cards[active].scr
 setActive(0);
 
 /* ---------------- project page ---------------- */
+// a single image with its caption; ratio comes from the item or its block
+function mediaFig(it,r,extra=""){
+  return `<figure class="m">
+    <div class="ph" style="--r:${it.r||r||"16/9"}"><img src="${src(it.k)}" alt="${it.c||""}" loading="lazy" decoding="async">${extra}${it.o?`<div class="ov"><span>${it.n||""}</span><strong>${it.o}</strong></div>`:""}</div>
+    ${it.c?`<figcaption>${it.c}</figcaption>`:""}
+  </figure>`;
+}
+// dark or light text for a colour swatch
+const onColor = hex => { const n=parseInt(hex.slice(1),16), l=(0.299*(n>>16)+0.587*(n>>8&255)+0.114*(n&255))/255; return l>.6?"#14161A":"#FFFFFF"; };
+const BLOCK = {
+  text:b=>`<section class="b b-text"><h2 class="label">${b.h}</h2><p>${b.p}</p></section>`,
+  full:b=>`<div class="b b-full">${mediaFig(b,b.r)}</div>`,
+  grid:b=>`<div class="b b-grid${b.scroll?" scroll":""}" style="--n:${b.items.length}">${b.items.map(it=>mediaFig(it,b.r)).join("")}</div>`,
+  ba:b=>`<div class="b b-ba">${mediaFig(b.a,"1/1",`<span class="tag">Before</span>`)}${mediaFig(b.b,"1/1",`<span class="tag">After</span>`)}</div>`,
+  phones:b=>`<div class="b b-phones"><p class="label">${b.h}</p><div class="row" style="--n:${b.items.length}">${b.items.map(it=>mediaFig(it,"9/16")).join("")}</div></div>`,
+  palette:b=>`<div class="b b-pal" role="list" aria-label="Brand colours">${b.sw.map(s=>`<div class="sw" role="listitem" style="--c:${s.hex};--t:${onColor(s.hex)}"><span>${s.n}</span><code>${s.hex}</code></div>`).join("")}</div>`,
+  split:b=>`<div class="b b-split${b.flip?" flip":""}">${mediaFig(b,b.r)}<div class="st"><h2 class="label">${b.h}</h2><p>${b.p}</p></div></div>`,
+  post:b=>`<div class="b b-split"><div class="post"><div class="who"><i aria-hidden="true"></i><b>${b.who}</b></div><p>${b.text}</p></div><div class="st"><h2 class="label">${b.h}</h2><p>${b.p}</p></div></div>`
+};
+
 function renderProject(i){
-  const x=P[i], nx=P[(i+1)%P.length];
-  const gallery = x.ba
-    ? `<div class="slot-img s-ba">Old logo</div><div class="slot-img s-ba">New logo</div><div class="slot-img s-12">Identity system</div><div class="slot-img s-6">Application 01</div><div class="slot-img s-6">Application 02</div>`
+  const x=P[i], nx=P[(i+1)%P.length], cs=CASE[x.id];
+  const gallery = cs
+    ? cs.blocks.map(b=>BLOCK[b.t](b)).join("")
     : `<div class="slot-img s-12">Hero image</div><div class="slot-img s-6">Image 02</div><div class="slot-img s-6">Image 03</div><div class="slot-img s-12">Image 04</div>`;
   proj.innerHTML=`
     <div class="pbar"><div class="wrap">
       <button type="button" class="back" id="back"><span>←</span>All projects</button>
-      <span class="pcount">${pad(i+1)} / ${pad(P.length)}</span>
+      <span class="pright">${cs&&cs.demo?`<span class="demo" title="AI-generated placeholder images and copy">Demo media</span>`:""}<span class="pcount">${pad(i+1)} / ${pad(P.length)}</span></span>
     </div></div>
-    <header class="pcover" style="--cover:${x.cover};--fg:${x.fg}"><div class="wrap">
+    <header class="pcover${cs?" has-img":""}" style="--cover:${x.cover};--fg:${x.fg}">
+      ${cs?`<img src="${src(cs.cover)}" alt="" fetchpriority="high">`:""}
+      <div class="wrap">
       <p class="label">${x.sector}</p><h1>${x.name}</h1><p>${x.line}</p>
     </div></header>
     <div class="wrap">
@@ -189,7 +274,7 @@ function renderProject(i){
         </dl>
         <p class="sum">${x.sum}</p>
       </section>
-      <section class="gal" aria-label="Project images">${gallery}</section>
+      <section class="${cs?"blocks":"gal"}" aria-label="Project images">${gallery}</section>
       <div class="next">
         <button type="button" class="back" id="back2"><span>←</span>Back to all projects</button>
         <button type="button" class="next-link" id="nextp"><p class="label">Next project</p><strong>${nx.name} →</strong></button>

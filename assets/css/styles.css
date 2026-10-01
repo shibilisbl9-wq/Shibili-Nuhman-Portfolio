@@ -5,7 +5,7 @@ img{max-width:100%}
 
 :root{
   --ground:#ECEDF0; --surface:#FFFFFF; --ink:#101217; --muted:#686D78; --line:#D9DCE2;
-  --accent:#3D6BFF; --accent-soft:#E3EAFF;
+  --accent:#3D6BFF; --accent-soft:#E3EAFF; --bezel:#15171C;
   --display:"Google Sans Flex","Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -17,11 +17,11 @@ img{max-width:100%}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){color-scheme:dark;
     --ground:#0D0E11; --surface:#16181D; --ink:#F0F1F4; --muted:#8C919C; --line:#262932;
-    --accent:#6F8FFF; --accent-soft:#1B2340;}
+    --accent:#6F8FFF; --accent-soft:#1B2340; --bezel:#2C2F37;}
 }
 :root[data-theme="dark"]{color-scheme:dark;
   --ground:#0D0E11; --surface:#16181D; --ink:#F0F1F4; --muted:#8C919C; --line:#262932;
-  --accent:#6F8FFF; --accent-soft:#1B2340;}
+  --accent:#6F8FFF; --accent-soft:#1B2340; --bezel:#2C2F37;}
 
 *{box-sizing:border-box}
 body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
@@ -203,6 +203,47 @@ h1.head{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,5.1vw,
 .next-link strong{font-family:var(--display);font-weight:500;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.04em;line-height:1}
 .next-link:hover strong{color:var(--accent)}
 
+/* case-study blocks (rendered from CASE in main.js) */
+.pright{display:flex;align-items:center;gap:14px}
+.demo{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--muted);padding:5px 9px}
+.pcover > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcover.has-img{color:#FFFFFF;min-height:clamp(420px,74vh,780px)}
+.pcover.has-img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,9,12,.78) 0%,rgba(8,9,12,.28) 42%,rgba(8,9,12,0) 68%)}
+.blocks{display:grid;gap:clamp(14px,1.6vw,24px)}
+.b{min-width:0}
+.b-text{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);padding-block:clamp(36px,5.5vw,80px) clamp(6px,1vw,14px)}
+.b-text .label,.st .label,.b-phones .label{font-weight:400}
+.b-text .label{grid-column:1 / 5;padding-top:.6em}
+.b-text p,.st p{grid-column:6 / 13;margin:0;font-family:var(--display);font-size:clamp(1.15rem,1.8vw,1.55rem);line-height:1.35;letter-spacing:-.015em;max-width:38ch;text-wrap:pretty}
+.m{margin:0;display:grid;gap:10px;min-width:0}
+.m .ph{position:relative;aspect-ratio:var(--r);max-width:100%;overflow:hidden;background:var(--surface)}
+.m img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.m figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.b-grid{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:var(--gap)}
+.b-ba{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.tag{position:absolute;left:12px;top:12px;z-index:1;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;background:var(--ground);color:var(--ink);padding:5px 9px}
+.ov{position:absolute;inset:0;padding:clamp(16px,1.8vw,24px);display:flex;flex-direction:column;gap:10px;color:#FFFFFF}
+.ov span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;opacity:.8}
+.ov strong{font-family:var(--display);font-weight:500;font-size:clamp(20px,2vw,28px);line-height:1.08;letter-spacing:-.02em;max-width:11ch;text-wrap:balance}
+.b-phones{background:var(--surface);padding:clamp(24px,4vw,56px);display:grid;gap:clamp(18px,2.4vw,32px)}
+.b-phones .row{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:clamp(14px,2.6vw,44px);width:100%;max-width:calc(var(--n) * 280px);margin-inline:auto}
+.b-phones .ph{border:7px solid var(--bezel);border-radius:26px;background:var(--bezel)}
+.b-phones figcaption{text-align:center}
+.b-pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.sw{background:var(--c);color:var(--t);min-height:clamp(120px,14vw,180px);padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.sw span{font-family:var(--display);font-weight:500;font-size:18px;letter-spacing:-.01em}
+.sw code{font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+.b-split{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);align-items:end}
+.b-split > .m,.b-split > .post{grid-column:1 / 6}
+.b-split .st{grid-column:7 / 13;display:grid;gap:14px;padding-bottom:clamp(8px,2vw,28px)}
+.b-split .st .label,.b-split .st p{grid-column:auto}
+.b-split.flip > .m{grid-column:8 / 13;order:2}
+.b-split.flip .st{grid-column:1 / 7}
+.post{background:var(--surface);border:1px solid var(--line);padding:clamp(18px,2vw,26px);display:grid;gap:14px;align-self:stretch}
+.post .who{display:flex;align-items:center;gap:10px;font-size:14px}
+.post .who i{width:30px;height:30px;border-radius:50%;background:var(--accent)}
+.post p{margin:0;font-size:15px;line-height:1.55;white-space:pre-line}
+
 /* =========================================================
    responsive + motion
    ========================================================= */
@@ -213,6 +254,8 @@ h1.head{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,5.1vw,
   .c-years,.c-lang{grid-column:span 6}
   .c-work{grid-column:1 / -1}
   .pmeta dl,.pmeta .sum{grid-column:1 / -1}
+  .b-text .label,.b-text p{grid-column:1 / -1}
+  .b-split > .m,.b-split > .post,.b-split .st,.b-split.flip > .m,.b-split.flip .st{grid-column:1 / -1;order:0}
 }
 @media (max-width:760px){
   .shelf{height:auto;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;align-items:stretch;padding-bottom:6px;scrollbar-width:none}
@@ -221,6 +264,11 @@ h1.head{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,5.1vw,
   .card .ln2{opacity:.85;max-height:40px}
   .card .go{opacity:.9}
   .s-6,.s-ba{grid-column:1 / -1}
+  .b-grid{grid-template-columns:1fr}
+  .b-grid.scroll,.b-phones .row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;max-width:none}
+  .b-grid.scroll > .m{flex:0 0 74%;scroll-snap-align:start}
+  .b-phones .row > .m{flex:0 0 56%;scroll-snap-align:center}
+  .b-phones{padding-inline:16px}
 }
 @media (max-width:560px){
   :root{--pill:1.9em}

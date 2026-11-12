@@ -1,0 +1,480 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mirage Ground Floor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a build console up top (the model you can x-ray room by room and play through its four build stages),
+   then an editorial case study: idea, build layers, room-by-room closeups, material board, schedule. */
+:root{
+  --paper:#E8E6E1;      /* stone-grey drawing board */
+  --card:#F6F5F2;
+  --ink:#1D1B19;
+  --muted:#6B655E;
+  --line:#CFCAC2;
+  --oxide:#8E2B1E;      /* polished red oxide */
+  --green:#1E5A48;      /* zellige bottle green */
+  --brass:#B48A3E;
+  --shadow:0 18px 50px -24px rgba(40,30,20,.35);
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#151413;--card:#1F1D1B;--ink:#EEE8DF;--muted:#A39B91;--line:#36322E;
+  --oxide:#D2654F;--green:#5FA88E;--brass:#D3AA5E;--shadow:0 18px 50px -24px rgba(0,0,0,.7);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#151413;--card:#1F1D1B;--ink:#EEE8DF;--muted:#A39B91;--line:#36322E;
+  --oxide:#D2654F;--green:#5FA88E;--brass:#D3AA5E;--shadow:0 18px 50px -24px rgba(0,0,0,.7);color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px}
+.wrap{max-width:1320px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.02em;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font:500 11px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--oxide);outline-offset:3px;border-radius:4px}
+
+/* ---------- masthead */
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;padding-block:40px 24px}
+.mast h1{font-size:clamp(56px,9vw,128px);line-height:.88;font-weight:300}
+.mast h1 span{color:var(--oxide)}
+.mast .sub{display:grid;gap:6px;max-width:420px}
+.mast .sub p{color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 12px/1 var(--mono);padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);white-space:nowrap}
+
+/* ---------- console */
+.console{position:relative;background:var(--card);border-radius:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:280px minmax(0,1fr);overflow:hidden}
+.rail{padding:24px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:18px;min-width:0}
+.rail h2{font-size:28px;line-height:1.05}
+.stat{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px}
+.stat b{font:300 34px/1 var(--display)}
+.rooms{list-style:none;margin:0;padding:0;display:grid;gap:2px;max-height:520px;overflow:auto}
+.rooms button{all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:10px;width:100%;box-sizing:border-box;padding:7px 10px;border-radius:10px;font-size:14px}
+.rooms button span{font:400 11px/1.9 var(--mono);color:var(--muted)}
+.rooms button:hover,.rooms button[aria-pressed="true"]{background:var(--paper)}
+.rooms button[aria-pressed="true"]{color:var(--oxide)}
+.lvl{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--paper);padding:5px;border-radius:14px}
+.lvl button{all:unset;cursor:pointer;text-align:center;padding:9px 6px;border-radius:10px;font-size:14px}
+.lvl button span{display:block;font-size:11px;color:var(--muted)}
+.lvl button[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.lvl button[aria-pressed="true"] span{color:inherit;opacity:.7}
+.film{margin-top:40px;background:var(--card);border-radius:24px;padding:12px;box-shadow:var(--shadow)}
+.film video{display:block;width:100%;border-radius:14px;background:var(--paper)}
+.stage{position:relative;min-width:0;padding:20px 20px 0}
+.stagehead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.stagehead h3{font-size:clamp(26px,3vw,40px);font-weight:300}
+.legend{font:400 12px/1.4 var(--mono);color:var(--muted)}
+svg.model{display:block;width:100%;height:auto;margin-top:6px;touch-action:manipulation}
+svg.model .layer{transition:opacity .7s ease}
+svg.model polygon.hit{fill:transparent;stroke:transparent;stroke-width:3;cursor:pointer;transition:stroke .2s}
+svg.model polygon.hit:hover,svg.model polygon.hit.on{stroke:var(--oxide);stroke-dasharray:10 8}
+.card{position:absolute;right:24px;top:84px;width:260px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;box-shadow:var(--shadow);display:grid;gap:8px}
+.card h4{margin:0;font:400 22px/1.15 var(--display)}
+.card .row{display:flex;justify-content:space-between;gap:12px;font-size:13px;border-top:1px solid var(--line);padding-top:7px}
+.card .row span:first-child{color:var(--muted)}
+.card p{font-size:13.5px;line-height:1.5;color:var(--muted)}
+.card a{font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--oxide);text-decoration:none}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--oxide);box-shadow:0 0 0 5px color-mix(in srgb,var(--oxide) 22%,transparent)}
+.stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px;align-items:stretch;padding:14px 20px 20px;border-top:1px solid var(--line);grid-column:1/-1;background:var(--card)}
+.stages button.st{all:unset;cursor:pointer;display:grid;gap:6px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);min-width:0}
+.stages button.st b{font:400 17px/1.15 var(--display)}
+.stages button.st small{font-size:12.5px;line-height:1.4;color:var(--muted)}
+.stages button.st .bar{height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+.stages button.st .bar i{display:block;height:100%;width:0;background:var(--oxide);transition:width .6s ease}
+.stages button.st[aria-pressed="true"]{background:var(--paper);border-color:transparent}
+.stages button.st[aria-pressed="true"] .bar i,.stages button.st.done .bar i{width:100%}
+.play{all:unset;cursor:pointer;align-self:center;display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:var(--ink);color:var(--card);font:500 13px/1 var(--mono);white-space:nowrap}
+
+/* ---------- editorial */
+section{padding-top:96px}
+.lead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 64px;align-items:start}
+.lead h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;font-weight:300}
+.lead .txt{display:grid;gap:16px;max-width:62ch;font-size:17px}
+.moves{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:48px}
+.move{display:grid;gap:10px;min-width:0}
+.move img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;background:var(--card)}
+.move h3{font-size:22px}
+.move p{font-size:14.5px;color:var(--muted)}
+
+.layers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:40px}
+.layer-c{background:var(--card);border-radius:20px;padding:12px 12px 18px;display:grid;gap:10px;min-width:0}
+.layer-c img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--paper)}
+.layer-c h3{font-size:20px;padding-inline:6px}
+.layer-c p{font-size:14px;color:var(--muted);padding-inline:6px}
+.source{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px}
+.source figure{margin:0;background:var(--card);border-radius:20px;padding:12px;display:grid;gap:8px}
+.source img{width:100%;border-radius:12px;background:#fff}
+figcaption{font:400 12px/1.5 var(--mono);color:var(--muted);padding-inline:4px}
+
+.room{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:28px;margin-top:64px;align-items:start}
+.room.flip{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}
+.room.flip .shot{order:2}
+.shot{position:relative;min-width:0}
+.shot>img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:22px;display:block;background:var(--card)}
+.shot .inset{position:absolute;left:16px;bottom:16px;width:min(34%,260px);border-radius:14px;border:3px solid var(--card);box-shadow:var(--shadow);background:var(--card)}
+.spec{display:grid;gap:14px;min-width:0;position:sticky;top:24px}
+.spec h3{font-size:clamp(28px,3vw,40px);line-height:1.05;font-weight:300}
+.spec p{color:var(--muted)}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:6px 0 0;font-size:14px}
+.spec dt{font:500 11px/1.9 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.spec dd{margin:0}
+.tagnum{font:500 12px/1 var(--mono);color:var(--oxide)}
+
+.minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:56px}
+.mini{background:var(--card);border-radius:20px;padding:12px 12px 18px;display:grid;gap:10px;min-width:0}
+.mini img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:12px}
+.mini h3{font-size:21px;padding-inline:6px}
+.mini p{font-size:14px;color:var(--muted);padding-inline:6px}
+
+.mats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin-top:40px}
+.mat{display:grid;gap:8px;min-width:0}
+.mat img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:var(--shadow);background:var(--card)}
+.mat b{font:400 16px/1.2 var(--display)}
+.mat span{font-size:12.5px;line-height:1.4;color:var(--muted)}
+
+.tablewrap{overflow-x:auto;margin-top:32px;background:var(--card);border-radius:20px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.mono{white-space:nowrap}
+tr:last-child td{border-bottom:0}
+footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted);font-size:13px}
+
+@media (max-width:1080px){
+  .console{grid-template-columns:1fr}
+  .rail{border-right:0;border-top:1px solid var(--line);order:3}
+  .stage{order:1}.stages{order:2}
+  .rooms{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));max-height:none}
+  .card{position:static;width:auto;margin:12px 0 0}
+  .moves,.layers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .room,.room.flip{grid-template-columns:1fr}
+  .room.flip .shot{order:0}
+  .spec{position:static}
+}
+@media (max-width:640px){
+  .stages{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .play{grid-column:1/-1;justify-content:center}
+  .lead,.source{grid-template-columns:1fr}
+  .moves,.layers,.minis{grid-template-columns:1fr}
+  .mats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .shot .inset{display:none}
+  section{padding-top:64px}
+}
+@media (prefers-reduced-motion:reduce){svg.model .layer,.stages .bar i{transition:none}}
+</style>
+
+<div class="wrap">
+  <p style="padding-top:20px"><a href="../#work" style="font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted)">← Shibili Nuhman — portfolio</a></p>
+  <header class="mast">
+    <h1>Mirage<span>.</span></h1>
+    <div class="sub">
+      <p class="eyebrow">Nadan Serenity · interior case study · two floors</p>
+      <p>A contemporary Kerala house built around an open-to-sky water court. The model below is drawn from the ground-floor plan; pick a room to see it built.</p>
+      <div class="facts">
+        <span class="chip">22.85 × 15.4 m</span><span class="chip">15 spaces</span><span class="chip">FFL +0.60</span><span class="chip">cut at 2.50 m</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== BUILD CONSOLE -->
+  <div class="console" id="console">
+    <aside class="rail">
+      <div>
+        <p class="eyebrow">Building plan</p>
+        <h2 id="lvTitle">Ground floor</h2>
+      </div>
+      <div class="lvl" role="group" aria-label="Level">
+        <button data-l="gf" aria-pressed="true">Ground <span class="mono">+0.60</span></button>
+        <button data-l="ff" aria-pressed="false">First <span class="mono">+3.90</span></button>
+      </div>
+      <div class="stat"><span class="eyebrow" id="lvStatL">Built area</span><b class="mono" id="lvStat">≈ 237 m²</b></div>
+      <ul class="rooms" id="roomlist"></ul>
+    </aside>
+
+    <div class="stage">
+      <div class="stagehead">
+        <h3 id="stagetitle">Drawing</h3>
+        <span class="legend" id="stagelegend">Hover or tap a room to see it finished</span>
+      </div>
+      <svg class="model" id="model" viewBox="0 0 2400 1600" role="img" aria-label="Isometric cutaway of the Mirage ground floor">
+        <defs><clipPath id="reveal"><polygon id="clipPoly" points=""/></clipPath></defs>
+        <image class="layer" data-stage="0" href="img/iso_line.webp" width="2400" height="1600"/>
+        <image class="layer" data-stage="1" href="img/iso_clay.webp" width="2400" height="1600" opacity="0"/>
+        <image class="layer" data-stage="2" href="img/iso_finish.webp" width="2400" height="1600" opacity="0"/>
+        <image class="layer" data-stage="3" href="img/iso_full.webp" width="2400" height="1600" opacity="0"/>
+        <image id="revealImg" href="img/iso_full.webp" width="2400" height="1600" clip-path="url(#reveal)"/>
+        <g id="hits"></g>
+      </svg>
+      <div class="card" id="card" aria-live="polite">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow" id="cTag">Space</span><span class="dot"></span></div>
+        <h4 id="cName">Dining hall + nadumuttam</h4>
+        <p id="cIdea"></p>
+        <div class="row"><span>Size</span><span class="mono" id="cSize"></span></div>
+        <div class="row"><span>Floor</span><span id="cFloor"></span></div>
+        <a id="cLink" href="#r-hall">See the room →</a>
+      </div>
+    </div>
+
+    <div class="stages" id="stages">
+      <button class="st" data-s="0" aria-pressed="true"><span class="tagnum">01</span><b>Drawing</b><small>Walls traced from the CAD plan</small><span class="bar"><i></i></span></button>
+      <button class="st" data-s="1" aria-pressed="false"><span class="tagnum">02</span><b>Structure</b><small>Walls, plinth, court and pit</small><span class="bar"><i></i></span></button>
+      <button class="st" data-s="2" aria-pressed="false"><span class="tagnum">03</span><b>Finishes</b><small>Floors, glazing, joinery lines</small><span class="bar"><i></i></span></button>
+      <button class="st" data-s="3" aria-pressed="false"><span class="tagnum">04</span><b>Lived-in</b><small>Furniture, textiles, light</small><span class="bar"><i></i></span></button>
+      <button class="play" id="play" aria-label="Play the build from drawing to lived-in">▶ Play build</button>
+    </div>
+  </div>
+
+  <!-- ===================== BUILD FILM -->
+  <section id="film">
+    <div class="lead">
+      <div><p class="eyebrow">Build film</p><h2>From plan to finished house in twenty-five seconds.</h2></div>
+      <div class="txt"><p>The same model, assembled in order: the plan on the plinth, walls rising, floors laid, furniture set down room by room, then the first-floor slab landing on top and being built out to the pool terrace. Finally the walls run to full height, the roofs close over, the travertine skin, timber box and the master's concrete frame go on, and the camera settles on the exterior.</p></div>
+    </div>
+    <div class="film"><video src="img/mirage_build.mp4" poster="img/build_poster.jpg" controls muted loop playsinline preload="metadata"></video></div>
+  </section>
+
+  <!-- ===================== IDEA -->
+  <section id="idea">
+    <div class="lead">
+      <div>
+        <p class="eyebrow">The idea</p>
+        <h2>Monsoon clay: a Kerala house that opens to the sky in the middle.</h2>
+      </div>
+      <div class="txt">
+        <p>The first scheme was quiet and pale. This one borrows the things that make a Kerala home feel alive and polishes them: red oxide floors buffed to a shine, hand-pressed Athangudi tiles from Chettinad, honey teak, brass that catches the light, and water at the centre of the plan.</p>
+        <p>The plan already had a deep dining hall between the kitchens and the bedrooms. Instead of filling it, the design opens it: a <em>nadumuttam</em>, the open courtyard of a traditional tharavad, becomes a black granite water court with four teak pillars and brass rain chains. Every room around it borrows its daylight and its sound of rain.</p>
+        <p>From there each space gets one clear move and a colour of its own, so walking through the house reads like a sequence of rooms, not one beige volume.</p>
+      </div>
+    </div>
+    <div class="moves">
+      <div class="move"><img src="img/zoom/court.webp" alt="Isometric close view of the water court and dining"><h3>Water at the heart</h3><p>Open-to-sky nadumuttam: granite pool, brass uruli, lotus, rain chains on a teak ring beam.</p></div>
+      <div class="move"><img src="img/zoom/living.webp" alt="Isometric close view of the sunken living pit"><h3>Sit lower, talk longer</h3><p>The living room drops 42 cm into a rust-velvet conversation pit on polished red oxide.</p></div>
+      <div class="move"><img src="img/zoom/theatre.webp" alt="Isometric close view of the home theatre"><h3>One jewel box</h3><p>The theatre goes fully dark green: velvet walls, tiered seats, teak acoustic slats.</p></div>
+      <div class="move"><img src="img/zoom/veranda.webp" alt="Isometric close view of the veranda with the swing"><h3>Swing to the garden</h3><p>A teak oonjal on brass chains on an Athangudi tile floor, open to the north garden.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT'S BUILT -->
+  <section id="built">
+    <div class="lead">
+      <div>
+        <p class="eyebrow">How it goes together</p>
+        <h2>Four layers, one model, one camera.</h2>
+      </div>
+      <div class="txt">
+        <p>Every wall in the model was traced from the ground-floor drawing at 2.71 cm per pixel: 83 wall segments and 13 windows, checked against the labelled room sizes (the master bedroom measures 530 × 450, as drawn). The four views below are rendered from the same camera, so each layer sits exactly on top of the last.</p>
+      </div>
+    </div>
+    <div class="layers">
+      <div class="layer-c"><img src="img/iso_line_s.webp" alt="Line drawing of the ground floor model"><h3>01 Drawing</h3><p>The plan extruded to a 2.5 m section cut. Dark wall caps read as the poché of the drawing.</p></div>
+      <div class="layer-c"><img src="img/iso_clay_s.webp" alt="White massing model of the ground floor"><h3>02 Structure</h3><p>Plinth at +0.60, walls, the sunken court (−0.55) and the living pit (−0.42).</p></div>
+      <div class="layer-c"><img src="img/iso_finish_s.webp" alt="Model with floor finishes and glazing"><h3>03 Finishes</h3><p>Six floor systems, teak windows and the folding veranda glazing.</p></div>
+      <div class="layer-c"><img src="img/iso_full_s.webp" alt="Fully furnished model"><h3>04 Lived-in</h3><p>Furniture, textiles, plants, lamps and late-afternoon sun from the west.</p></div>
+    </div>
+    <div class="source">
+      <figure><img src="img/plan_source.jpg" alt="Original ground floor CAD plan"><figcaption>Source: ground floor plan, as drawn</figcaption></figure>
+      <figure><img src="img/plan_top.webp" alt="Top-down render of the furnished model"><figcaption>The model from above, furnished</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ===================== ROOMS -->
+  <section id="rooms">
+    <div class="lead">
+      <div><p class="eyebrow">Room by room</p><h2>Close up.</h2></div>
+      <div class="txt"><p>Each photograph is taken from a camera placed inside the same model, so what you see here is the room in the cutaway above, at eye level. The small isometric in the corner shows where you are standing.</p></div>
+    </div>
+    <div id="roomblocks"></div>
+    <div class="minis">
+      <div class="mini" id="r-sitout"><img src="img/zoom/sitout.webp" alt="Isometric close view of the sitout"><h3>Sitout</h3><p>Red oxide with an ivory border, a teak charupadi bench along the open edges, and a brass uruli of marigolds at the door.</p></div>
+      <div class="mini" id="r-baths"><img src="img/zoom/baths.webp" alt="Isometric close view of the bedroom wing and bath"><h3>Bedroom wing + bath</h3><p>Red oxide bedroom with an oxblood headboard; a travertine tub against bottle-green zellige next door.</p></div>
+      <div class="mini" id="r-bedW"><img src="img/zoom/bedW.webp" alt="Isometric close view of the guest bedroom"><h3>Guest bedroom</h3><p>Honey teak boards, a teak headboard under the window, mustard and sage textiles.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== FIRST FLOOR -->
+  <section id="firstfloor">
+    <div class="lead">
+      <div><p class="eyebrow">First floor</p><h2>Upstairs: a family lounge that opens to a pool terrace.</h2></div>
+      <div class="txt"><p>The stair arrives in the middle of a 400 × 620 lounge. To the east is the master suite with its bath; to the west a second bedroom. Everything else is roof terrace: a plunge pool on the north-east deck, a teak pergola for dining at the west end, and a tiled balcony over the sitout. Switch the model at the top of the page to First to explore it.</p></div>
+    </div>
+    <div class="layers">
+      <div class="layer-c"><img src="img/ff_line_s.webp" alt="Line drawing of the first floor model"><h3>01 Drawing</h3><p>Traced from the first-floor plan and registered on the stair and the master bedroom below.</p></div>
+      <div class="layer-c"><img src="img/ff_clay_s.webp" alt="White massing model of the first floor"><h3>02 Structure</h3><p>Slab at +3.90, room walls, parapet and the pool recess.</p></div>
+      <div class="layer-c"><img src="img/ff_finish_s.webp" alt="First floor with finishes"><h3>03 Finishes</h3><p>Teak herringbone, red oxide, travertine deck, Athangudi balcony, glass balustrade.</p></div>
+      <div class="layer-c"><img src="img/ff_full_s.webp" alt="Furnished first floor"><h3>04 Lived-in</h3><p>Lounge, two bedrooms, pergola dining and loungers by the pool.</p></div>
+    </div>
+  </section>
+
+  <!-- ===================== MATERIALS -->
+  <section id="materials">
+    <div class="lead">
+      <div><p class="eyebrow">Material board</p><h2>Twelve materials, all of them warm to the touch.</h2></div>
+      <div class="txt"><p>Polished where you walk, soft where you sit, and brass wherever the light lands. Nothing is grey and nothing is high-gloss gold.</p></div>
+    </div>
+    <div class="mats" id="mats"></div>
+  </section>
+
+  <!-- ===================== SCHEDULE -->
+  <section id="schedule">
+    <div class="lead">
+      <div><p class="eyebrow">Room schedule</p><h2>Every space, as drawn.</h2></div>
+      <div class="txt"><p>Sizes are the internal dimensions from the plan, in centimetres.</p></div>
+    </div>
+    <div class="tablewrap"><table id="sched"><thead><tr><th>Space</th><th>Size (cm)</th><th>Area</th><th>Floor</th><th>The move</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <footer>
+    <span>Mirage · Nadan Serenity · interiors, v5</span>
+    <span>Model and cutaways rendered in Blender (Cycles) from the plan · eye-level views finished from the same model</span>
+  </footer>
+</div>
+
+<script>
+const ROOMS = {
+  hall:{n:'Dining hall + nadumuttam',s:'≈ 607 × 577',a:'≈ 35',f:'Terrazzo, brass strips',i:'The heart of the house: an open-to-sky water court with teak pillars, rain chains and a brass uruli, with the dining table beside it.',link:'r-court'},
+  living:{n:'Living room',s:'400 × 460',a:'18.4',f:'Red oxide, sunken 42 cm',i:'Seating drops into a conversation pit wrapped in rust velvet, a step below the polished floor.',link:'r-living'},
+  kit2:{n:'Show kitchen',s:'390 × 360',a:'14.0',f:'Terrazzo, brass strips',i:'A Verde marble island on a fluted teak body, bottle-green zellige and brass dome pendants.',link:'r-kitchen'},
+  master:{n:'Master bedroom',s:'530 × 450',a:'23.9',f:'Teak herringbone',i:'Oxblood channel headboard, a mustard bench, and a reading pair by the east window.',link:'r-master'},
+  veranda:{n:'Open veranda',s:'572 × 204',a:'11.7',f:'Athangudi tile',i:'A teak oonjal on brass chains facing the north garden, behind folding teak glass doors.',link:'r-veranda'},
+  theatre:{n:'Home theatre',s:'380 × 300',a:'11.4',f:'Ink wool carpet',i:'A jewel box in peacock velvet with teak acoustic slats and two tiered rows.',link:'r-theatre'},
+  stair:{n:'Stair hall',s:'322 × 410',a:'13.2',f:'Travertine',i:'One flight up to a broad landing, then two flights return along the walls on brass rails.',link:'r-stair'},
+  sitout:{n:'Sitout',s:'592 × 420',a:'24.9',f:'Red oxide, ivory border',i:'A teak charupadi bench on the open edges and a brass uruli of marigolds at the door.',link:'r-sitout'},
+  bedNE:{n:'Bedroom',s:'360 × 390',a:'14.0',f:'Red oxide',i:'Oxblood headboard with terracotta and indigo linen.',link:'r-baths'},
+  toiletE:{n:'Bath',s:'360 × 204',a:'7.3',f:'Athangudi tile',i:'A freestanding travertine tub against glossy bottle-green zellige.',link:'r-baths'},
+  bedW:{n:'Guest bedroom',s:'380 × 410',a:'15.6',f:'Teak boards',i:'Teak headboard under the window, mustard and sage textiles.',link:'r-bedW'},
+  toiletW:{n:'Toilet',s:'140 × 190',a:'2.7',f:'Athangudi tile',i:'A green zellige wet wall and a teak vanity.',link:'r-bedW'},
+  kit1:{n:'Work kitchen',s:'300 × 250',a:'7.5',f:'Polished Kota stone',i:'The working kitchen: a teak L, Kota tops and ochre zellige.',link:'r-kitchen'},
+  work:{n:'Work area',s:'240 × 360',a:'8.6',f:'Polished Kota stone',i:'Utility yard open to the west steps: washing, herbs and a coconut palm.',link:'schedule'},
+  toiletNE:{n:'Toilet',s:'240 × 150',a:'3.6',f:'Athangudi tile',i:'Twin teak vanities and a green zellige wall.',link:'schedule'},
+};
+const POLY = {"work":"264,914 510,774 680,958 680,1075 434,1216 264,1032","kit1":"529,777 717,669 829,790 829,907 640,1015 529,894","kit2":"727,663 968,526 1129,701 1129,818 889,956 727,781","veranda":"859,407 1223,199 1324,308 1324,425 959,634 859,524","bedW":"453,1100 786,909 973,1112 973,1229 640,1420 453,1217","toiletW":"453,1100 540,1050 630,1147 630,1265 543,1314 453,1217","theatre":"847,957 1083,822 1220,971 1220,1088 984,1223 847,1074","stair":"1043,762 1242,648 1429,851 1429,968 1230,1082 1043,879","living":"1343,739 1589,598 1792,818 1792,936 1546,1076 1343,856","toiletNE":"1241,202 1569,15 1639,91 1639,208 1312,396 1241,319","bedNE":"1424,226 1646,99 1818,285 1818,402 1595,529 1424,343","toiletE":"1604,421 1826,294 1918,394 1918,511 1696,638 1604,538","master":"1601,592 1928,404 2131,624 2131,741 1803,929 1601,709","hall":"968,526 1342,311 1601,592 1601,709 1226,923 968,643","sitout":"1317,915 1686,704 1877,910 1877,1035 1507,1246 1317,1039"};
+const STAGES = [
+  ['Drawing','Hover or tap a room to see it finished'],
+  ['Structure','The massing before any finish: plinth, walls, court, pit'],
+  ['Finishes','Floors, windows and joinery in place'],
+  ['Lived-in','The finished ground floor'],
+];
+const CLOSE = [
+  {id:'court',room:'hall',t:'Dining hall + nadumuttam',p:'The hall is opened to the sky over a 2.2 m square water court. Four turned teak pillars on black granite bases carry a teak ring beam; brass rain chains run from it into the water. The dining table sits beside the court so every meal has the sound of water.',d:[['Size','≈ 607 × 577'],['Floor','Ivory terrazzo, 1.2 m brass grid'],['Court','Black granite pool, −0.55'],['Pieces','Teak table on travertine piers, mustard linen chairs, brass bell pendants']]},
+  {id:'living',room:'living',t:'Living room',p:'Instead of a sofa against a wall, the seating sinks 42 cm into the floor. The pit sits in the south-east corner, so the sitout door opens onto a clear 1.1 m strip and the walk through to the hall stays free. Two travertine steps lead down; the pit is wrapped in rust velvet with indigo and mustard cushions.',d:[['Size','400 × 460'],['Floor','Polished red oxide'],['Walls','Lime plaster, teak slat screen'],['Clearance','1.1 m entry strip, 1.3 m walkway to the hall']]},
+  {id:'kitchen',room:'kit2',t:'Show kitchen',p:'A wall of honey teak hides the ovens and storage. The island is Verde Guatemala marble on a fluted teak body, the splash is bottle-green zellige, and three brass domes hang over the counter.',d:[['Size','390 × 360'],['Floor','Terrazzo, brass strips'],['Splash','Bottle-green zellige'],['Pieces','Verde island, brass-and-leather stools']]},
+  {id:'master',room:'master',t:'Master bedroom',p:'A teak herringbone floor, an oxblood velvet channel headboard on a teak back panel, and a mustard bench at the foot of the bed. Two leather lounge chairs face the east window for reading, and the teak wardrobe runs along the north wall, clear of the entry vestibule and the bath door.',d:[['Size','530 × 450'],['Floor','Teak herringbone'],['Headboard','Oxblood velvet on teak'],['Storage','Teak wardrobe, 1.7 m, north wall']]},
+  {id:'veranda',room:'veranda',t:'Open veranda',p:'Folding teak-and-glass doors open the hall to the north garden. On the veranda, a traditional teak oonjal hangs from a teak frame on brass chains over hand-pressed Athangudi tiles, with a brass nilavilakku lamp at the steps.',d:[['Size','572 × 204'],['Floor','Athangudi tiles, ivory / oxide / ochre / green'],['Pieces','Teak oonjal, cane floor mat, bolsters'],['Edge','Open on two sides, three steps down']]},
+  {id:'theatre',room:'theatre',t:'Home theatre',p:'The one room that goes fully dark. Walls are lined in peacock velvet channels, the rear wall is teak acoustic slats, and two rows of deep lounge seats sit on a carpeted riser with a strip of warm light at the step.',d:[['Size','380 × 300'],['Floor','Ink wool carpet'],['Walls','Peacock velvet, teak slats'],['Pieces','Six lounge seats on a 30 cm riser']]},
+  {id:'stair',room:'stair',t:'Stair hall',p:'An imperial stair in travertine. One flight rises from the entry wall to a broad landing, then two flights turn back along the side walls, all on slim brass rails.',d:[['Size','322 × 410'],['Stone','Honed travertine, 170 mm risers'],['Rails','Brushed brass'],['Light','South window over the landing']]},
+];
+const MATS = [
+  ['red_oxide','Red oxide','Polished cement. Sitout, living, bedroom'],
+  ['terrazzo','Terrazzo','Ivory with oxide and green chips, brass strips. Hall, kitchen'],
+  ['athangudi','Athangudi tile','Hand-pressed, Chettinad. Veranda, baths'],
+  ['zellige','Bottle-green zellige','Glazed, handmade. Kitchen splash, baths'],
+  ['teak','Honey teak','Oiled. Joinery, pillars, oonjal, windows'],
+  ['brass','Brushed brass','Uruli, rain chains, pendants, rails'],
+  ['verde','Verde marble','Polished. Kitchen island'],
+  ['travertine','Travertine','Honed. Stair, pit edges, tub, tables'],
+  ['plaster','Lime plaster','Ivory, hand-trowelled. All walls'],
+  ['velvet_rust','Rust velvet','Living pit, dining end chairs'],
+  ['velvet_peacock','Peacock velvet','Theatre walls and seats'],
+  ['linen_mustard','Mustard linen','Dining chairs, benches, cushions'],
+];
+Object.assign(ROOMS, {
+  ff_lounge:{n:'Family lounge',s:'400 × 620',a:'24.8',f:'Teak herringbone',i:'The stair arrives into a lounge with a mustard sofa, a library alcove and glass doors to the terrace and the balcony.',link:'firstfloor'},
+  ff_master:{n:'Master suite',s:'530 × 450',a:'23.9',f:'Red oxide',i:'Oxblood headboard on teak, a bench at the foot of the bed, and a dressing vestibule through to the bath.',link:'firstfloor'},
+  ff_bath:{n:'Master bath',s:'360 × 204',a:'7.3',f:'Athangudi tile',i:'A travertine tub against bottle-green zellige.',link:'firstfloor'},
+  ff_bedW:{n:'Bedroom',s:'380 × 410',a:'15.6',f:'Teak boards',i:'Peacock velvet headboard, teak wardrobe, a window to the south.',link:'firstfloor'},
+  ff_toiletW:{n:'Toilet',s:'140 × 210',a:'2.9',f:'Athangudi tile',i:'A green zellige wet wall and a teak vanity.',link:'firstfloor'},
+  ff_pool:{n:'Pool terrace',s:'pool 275 × 330',a:'open',f:'Travertine deck',i:'A zellige-lined plunge pool in a travertine deck with loungers and a glass balustrade.',link:'firstfloor'},
+  ff_terrace:{n:'Open terrace + pergola',s:'full width',a:'open',f:'Travertine deck',i:'A teak pergola with a dining table at the west end; planters along the edge.',link:'firstfloor'},
+  ff_balcony:{n:'Balcony',s:'over the sitout',a:'open',f:'Athangudi tile',i:'Cane chairs and a brass table above the entrance.',link:'firstfloor'},
+});
+Object.assign(POLY, {"ff_lounge": "997,643 1523,342 1783,624 1783,734 1257,1035 997,754", "ff_bedW": "761,926 1075,746 1246,931 1246,1041 932,1221 761,1036", "ff_toiletW": "761,926 845,878 932,973 932,1083 849,1131 761,1036", "ff_master": "1609,578 1914,404 2102,608 2102,719 1798,893 1609,688", "ff_bath": "1614,420 1820,302 1906,395 1906,505 1700,623 1614,530", "ff_terrace": "345,946 1328,384 1400,462 1400,508 417,1071 345,993", "ff_pool": "1236,284 1595,78 1838,342 1838,388 1478,593 1236,330", "ff_balcony": "1347,950 1693,752 1869,942 1869,988 1522,1187 1347,997"});
+const LEVELS = {
+  gf:{t:'Ground floor', pre:'iso', statL:'Built area', stat:'≈ 237 m²', first:'hall'},
+  ff:{t:'First floor', pre:'ff', statL:'Enclosed rooms', stat:'5 + terrace', first:'ff_lounge',
+      order:['ff_lounge','ff_master','ff_bath','ff_bedW','ff_toiletW','ff_pool','ff_terrace','ff_balcony']},
+};
+const ORDER = ['hall','living','kit2','master','veranda','theatre','stair','sitout','bedNE','toiletE','bedW','toiletW','kit1','work','toiletNE'];
+
+const $ = s => document.querySelector(s);
+const NS = 'http://www.w3.org/2000/svg';
+let current = 'hall', stage = 0, timer = null;
+
+// room list + hit polygons (larger rooms first so small ones sit on top)
+const list = $('#roomlist'), hits = $('#hits');
+LEVELS.gf.order = ORDER;
+const m2 = a => isNaN(a.replace('≈', '')) ? a : a + ' m²';
+function setLevel(l){
+  const L = LEVELS[l]; list.innerHTML = ''; hits.innerHTML = '';
+  L.order.forEach(k => {
+    const li = document.createElement('li'), b = document.createElement('button');
+    b.innerHTML = `${ROOMS[k].n}<span>${m2(ROOMS[k].a)}</span>`; b.dataset.k = k; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => select(k)); b.addEventListener('mouseenter', () => select(k));
+    li.appendChild(b); list.appendChild(li);
+  });
+  [...L.order].sort((a, b) => area(POLY[b]) - area(POLY[a])).forEach(k => {
+    const p = document.createElementNS(NS, 'polygon');
+    p.setAttribute('points', POLY[k]); p.setAttribute('class', 'hit'); p.dataset.k = k;
+    const t = document.createElementNS(NS, 'title'); t.textContent = ROOMS[k].n; p.appendChild(t);
+    p.addEventListener('mouseenter', () => select(k)); p.addEventListener('click', () => select(k));
+    hits.appendChild(p);
+  });
+  ['line', 'clay', 'finish', 'full'].forEach((n, i) => document.querySelector(`svg.model .layer[data-stage="${i}"]`).setAttribute('href', `img/${L.pre}_${n}.webp`));
+  $('#revealImg').setAttribute('href', `img/${L.pre}_full.webp`);
+  $('#lvTitle').textContent = L.t; $('#lvStatL').textContent = L.statL; $('#lvStat').textContent = L.stat;
+  document.querySelectorAll('.lvl button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === l ? 'true' : 'false'));
+  select(L.first);
+}
+document.querySelectorAll('.lvl button').forEach(b => b.addEventListener('click', () => { stop(); setLevel(b.dataset.l); }));
+function area(s){const q=s.split(' ').map(v=>v.split(',').map(Number));let a=0;for(let i=0;i<q.length;i++){const[j,k]=[q[i],q[(i+1)%q.length]];a+=j[0]*k[1]-k[0]*j[1]}return Math.abs(a/2)}
+
+function select(k){
+  current = k; const r = ROOMS[k];
+  $('#clipPoly').setAttribute('points', POLY[k]);
+  hits.querySelectorAll('polygon').forEach(p => p.classList.toggle('on', p.dataset.k === k));
+  list.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === k ? 'true' : 'false'));
+  $('#cName').textContent = r.n; $('#cIdea').textContent = r.i; $('#cSize').textContent = /\d ×/.test(r.s) ? r.s + ' cm' : r.s;
+  $('#cFloor').textContent = r.f; $('#cTag').textContent = m2(r.a); $('#cLink').href = '#' + r.link;
+}
+function setStage(s){
+  stage = s;
+  document.querySelectorAll('svg.model .layer').forEach(im => im.setAttribute('opacity', +im.dataset.stage === s ? 1 : 0));
+  $('#revealImg').style.display = s === 3 ? 'none' : '';
+  document.querySelectorAll('.stages .st').forEach(b => { const i = +b.dataset.s; b.setAttribute('aria-pressed', i === s ? 'true' : 'false'); b.classList.toggle('done', i < s); });
+  $('#stagetitle').textContent = STAGES[s][0]; $('#stagelegend').textContent = STAGES[s][1];
+}
+document.querySelectorAll('.stages .st').forEach(b => b.addEventListener('click', () => { stop(); setStage(+b.dataset.s); }));
+function stop(){ if (timer) { clearInterval(timer); timer = null; $('#play').textContent = '▶ Play build'; } }
+$('#play').addEventListener('click', () => {
+  if (timer) return stop();
+  let s = 0; setStage(0); $('#play').textContent = '❚❚ Pause';
+  timer = setInterval(() => { s++; if (s > 3) { stop(); return; } setStage(s); }, 1700);
+});
+setLevel('gf'); setStage(0);
+
+// closeups
+const rb = $('#roomblocks');
+CLOSE.forEach((c, i) => {
+  const el = document.createElement('article');
+  el.className = 'room' + (i % 2 ? ' flip' : ''); el.id = 'r-' + c.id;
+  el.innerHTML = `<div class="shot"><img src="img/ai/${c.id}.jpg" alt="${c.t}, eye-level view" loading="lazy"><img class="inset" src="img/zoom/${c.id}.webp" alt="" loading="lazy"></div>
+  <div class="spec"><span class="tagnum">${ROOMS[c.room].a} m²</span><h3>${c.t}</h3><p>${c.p}</p><dl>${c.d.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
+  <a class="tagnum" href="#console" data-room="${c.room}" style="text-decoration:none">Show in the model ↑</a></div>`;
+  rb.appendChild(el);
+});
+rb.addEventListener('click', e => { const a = e.target.closest('a[data-room]'); if (a) { setLevel('gf'); select(a.dataset.room); setStage(0); } });
+
+// materials
+$('#mats').innerHTML = MATS.map(([f,n,w]) => `<div class="mat"><img src="img/mat/${f}.jpg" alt="${n} sample" loading="lazy"><b>${n}</b><span>${w}</span></div>`).join('');
+// schedule
+$('#sched tbody').innerHTML = ORDER.concat(LEVELS.ff.order).map(k => { const r = ROOMS[k]; return `<tr><td>${r.n}</td><td class="mono">${r.s}</td><td class="mono">${m2(r.a)}</td><td>${r.f}</td><td>${r.i}</td></tr>`; }).join('');
+</script>
+
+</body></html>

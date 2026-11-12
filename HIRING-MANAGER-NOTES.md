@@ -7,7 +7,7 @@ Blunt on purpose.
 
 | Reject reason | Your status |
 |---|---|
-| **No motion on a motion designer's site.** If you say "motion designer" and I can't press play within 10 seconds, I assume you can't. | **Open problem.** Every reel in your Drive is over 10 MB, so none could be pulled into this build. The site shows stills with honest "still" labels. Fix this first: see "Do next". |
+| **No motion on a motion designer's site.** If you say "motion designer" and I can't press play within 10 seconds, I assume you can't. | **Partly fixed.** A 52-second reel now sits second on the site, cut from your earlier portfolio video plus the Mirage build film. The source was 854×480, so it is soft at full screen, and it is silent. A 1080p export of the same edit, with music, would close this. |
 | **No outcomes.** "Lifting engagement" with no number reads as filler. | **Open problem.** There is not one metric anywhere in your résumé or old portfolio. I did not invent any. |
 | **Typos.** One typo in a designer's résumé is a detail-orientation fail. | Your old résumés had "Graphic Designerr", "mutiple", "Typhography", "produced" lower-case mid-list. Fixed in the new one. |
 | **Unclear ownership.** Agency work where I can't tell what *you* did. | Partly fixed: each project now states Role and Scope. You must check every line is true, see "Verify". |
@@ -50,7 +50,6 @@ I wrote these from your résumé, PDF portfolio and repos. I could not confirm t
 ## Do next, in this order
 
 1. Enable GitHub Pages (see README). Two clicks.
-2. Export a showreel under 10 MB (1080p, H.264, about 6 Mbps, 45-60 s) or upload it to Vimeo/YouTube and send me the link. I will wire it in as the second section.
+2. Send the original 1080p export of your portfolio video (or the project file renders). The reel on the site is built from a 480p WhatsApp copy.
 3. Give me three real numbers. I will rewrite the bullets around them.
-4. Replace the hero portrait with the dark-lit shot at full resolution. The one used is 1072 px wide and is being upscaled on desktop; it reads as moody, but a 3000 px file would be sharp.
-5. Buy a domain. `shibilinuhman.com` on a résumé beats a github.io URL.
+4. Buy a domain. `shibilinuhman.com` on a résumé beats a github.io URL.

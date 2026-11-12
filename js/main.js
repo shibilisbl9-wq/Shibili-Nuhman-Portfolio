@@ -359,5 +359,11 @@
   });
   if (document.fonts) document.fonts.ready.then(() => { snapRows(); rollTo(rollIdx, true); });
 
+  // reel: play when it is on screen, pause when it is not
+  const rv = $('#reelVideo');
+  if (rv && !RM && 'IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) rv.play().catch(() => {}); else rv.pause();
+  }), { threshold: .5 }).observe(rv);
+
   boot();
 })();

@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shibili Nuhman — Visual Designer, Dubai</title>
+<meta name="description" content="Shibili Nuhman is a visual designer in Dubai working end to end across brand identity, motion, photography and content: concept, art direction, shoot, edit, deliver.">
+<meta property="og:title" content="Shibili Nuhman — Visual Designer">
+<meta property="og:description" content="Brand identity, motion and content. Concept to delivery, one visual language.">
+<meta property="og:image" content="assets/img/dulight-brand.webp">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Cpath d='M7 5l17 9-7.5 2.2L13 24z' fill='%231e5bff'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/portrait.webp" as="image">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<!-- the cursor that builds the page -->
+<div id="cursor" aria-hidden="true">
+  <svg viewBox="0 0 20 22" width="20" height="22"><path d="M2 2l15.5 7.6-6.7 1.9-3 6.6z" fill="#1e5bff" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <span class="tag">Shibili Nuhman</span>
+</div>
+
+<!-- first frame -->
+<div id="loader" class="grid" aria-hidden="true">
+  <div class="sel" id="selA"><span class="txt"></span><i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i><em class="dim"></em></div>
+  <div class="sel blue" id="selB"><span class="txt">visual designer</span><i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i><em class="dim"></em></div>
+  <button id="skip" type="button">Skip intro</button>
+</div>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="Shibili Nuhman, home"><span class="mk"></span>Shibili Nuhman</a>
+  <nav aria-label="Primary">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="resume/">Résumé</a>
+    <a class="cta" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============ INTRO (pinned) ============ -->
+<section id="intro" aria-label="Introduction">
+  <div class="stage grid" id="stage">
+
+    <div class="frame" id="frame">
+      <img id="portrait" src="assets/img/portrait.webp" alt="Portrait of Shibili Nuhman, arms crossed, in black and white" width="1072" height="1240">
+      <div class="shade"></div>
+      <div class="tiles" id="tiles"></div>
+      <i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i>
+      <em class="dim" id="frameDim"></em>
+      <span class="layer">portrait.jpg</span>
+    </div>
+
+    <div class="hero-ui" id="heroUi">
+      <p class="hero-kicker">Portfolio — 2026</p>
+      <h1 class="hero-title">Shibili Nuhman<br><span>Visual designer, Dubai.</span></h1>
+      <p class="hero-scroll"><span class="wheel"></span>Scroll — the cursor does the rest</p>
+    </div>
+
+    <div class="cell c-hello" data-cell="hello">
+      <div class="cell-in">
+        <span class="label">01 — Hello</span>
+        <p class="hello">Hi, my name is <em>Shibili Nuhman.</em></p>
+      </div>
+    </div>
+
+    <div class="cell c-roles" data-cell="roles">
+      <div class="cell-in">
+        <span class="label">02 — I am a</span>
+        <div class="tagstack" id="tagstack" aria-label="Photographer, videographer, motion designer, graphic designer — visual designer">
+          <span class="rtag" style="--c:#ff6a3d;--r:-5deg;--x:-.7;--t:2">Photographer</span>
+          <span class="rtag" style="--c:#7b4dff;--r:4deg;--x:.6;--t:17">Videographer</span>
+          <span class="rtag" style="--c:#0aa870;--r:-3deg;--x:-.5;--t:32">Motion designer</span>
+          <span class="rtag" style="--c:#f0308a;--r:5deg;--x:.7;--t:47">Graphic designer</span>
+          <span class="rtag final" style="--c:#1e5bff;--r:0deg;--x:0;--t:66">Visual designer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell c-move" data-cell="move">
+      <div class="cell-in">
+        <span class="label">03 — What I do</span>
+        <p class="move">and I like to<br><span class="mv" id="mv" aria-label="move">m<i>o</i><i>o</i><i>o</i><i>o</i><i>o</i><i>o</i><i>o</i><i>o</i><i>o</i><b>o</b>ve</span> the brands.</p>
+        <p class="on">On <span class="roll" id="roll"><span class="roll-in"><span>paper</span><span>screen</span><span>streets</span><span>paper</span></span></span>.</p>
+      </div>
+    </div>
+
+    <div class="cell c-meta" data-cell="meta">
+      <div class="cell-in">
+        <span class="dot"></span>
+        <p>Dubai, UAE<br><span>Open to senior visual, brand &amp; motion roles</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ ABOUT (bento) ============ -->
+<section id="about" class="grid sec" aria-label="About">
+  <div class="bento">
+
+    <article class="b b-xp1" data-draw data-row="a">
+      <span class="label">04 — Experience</span>
+      <h3>Graphic / Visual Content Creator</h3>
+      <p class="org">MODUS Digital Marketing <span>Bay Square, Dubai</span></p>
+      <p class="when">2025 — Present</p>
+      <ul>
+        <li>Lead the visual output for client accounts in real estate and retail, Zee Real Estate among them, from brief to final file.</li>
+        <li>Shoot and edit product photography, video and UGC-style content in-house, so campaigns don't wait on outside production.</li>
+        <li>Build brochures, labels and campaign systems that hold one visual language across print and digital.</li>
+      </ul>
+    </article>
+
+    <article class="b b-xp2" data-draw data-row="a">
+      <span class="label">05 — Experience</span>
+      <h3>Graphic Designer</h3>
+      <p class="org">DuLight FZE <span>JAFZA, Dubai</span></p>
+      <p class="when">2021 — 2024</p>
+      <ul>
+        <li>Redrew the DuLight identity: a single geometric wordmark, a logo system and the line “Redefining Light”.</li>
+        <li>Produced social creatives and product visuals for LED lighting ranges and campaigns.</li>
+        <li>Designed brochures and sales material used by the team in front of buyers.</li>
+      </ul>
+    </article>
+
+    <article class="b b-str" data-draw data-row="b">
+      <span class="label">06 — Strengths</span>
+      <ul class="chips">
+        <li>Brand identity</li><li>Art direction</li><li>Motion graphics</li><li>Typography</li><li>Photography</li><li>Videography</li><li>Print &amp; packaging</li><li>Social systems</li><li>Visual storytelling</li><li>Calligraphy</li><li>AI-assisted production</li>
+      </ul>
+    </article>
+
+    <article class="b b-app" data-draw data-row="b">
+      <span class="label">07 — Toolkit</span>
+      <ul class="apps">
+        <li><b>Ps</b>Photoshop</li><li><b>Ai</b>Illustrator</li><li><b>Ae</b>After Effects</li><li><b>Pr</b>Premiere Pro</li><li><b>Id</b>InDesign</li><li><b>Lr</b>Lightroom</li><li><b>Bl</b>Blender</li><li><b>Fg</b>Figma</li><li><b>Hf</b>Higgsfield</li>
+      </ul>
+    </article>
+
+    <article class="b b-lang" data-draw data-row="b">
+      <span class="label">08 — Languages</span>
+      <ul class="langs"><li>English</li><li>Arabic</li><li>Malayalam</li></ul>
+      <span class="label gap">09 — Education</span>
+      <p class="edu">Multimedia &amp; Special Effects<br><span>Govt. Industrial Training Institute, Kasaragod · 2019–20</span></p>
+    </article>
+
+    <article class="b b-flow" data-draw data-row="c">
+      <span class="label">10 — How a job runs</span>
+      <svg class="path" viewBox="0 0 1000 150" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Concept, direction, shoot, edit, deliver">
+        <path class="pl" d="M60 96 C 170 20, 220 20, 280 70 S 420 130, 500 70 S 660 10, 720 70 S 860 130, 940 56" pathLength="1"/>
+        <g class="pts">
+          <rect x="54" y="90" width="12" height="12"/><rect x="274" y="64" width="12" height="12"/><rect x="494" y="64" width="12" height="12"/><rect x="714" y="64" width="12" height="12"/><rect x="934" y="50" width="12" height="12"/>
+        </g>
+        <g class="pt-l">
+          <text x="60" y="132">Concept</text><text x="280" y="106">Direction</text><text x="500" y="106">Shoot</text><text x="720" y="106">Edit</text><text x="940" y="92">Deliver</text>
+        </g>
+      </svg>
+      <p class="note">One person carries the idea the whole way, so nothing gets lost between the deck and the delivery.</p>
+    </article>
+
+    <article class="b b-fact" data-draw data-row="c">
+      <span class="label">11 — At a glance</span>
+      <dl>
+        <div><dt>4+</dt><dd>years designing in Dubai</dd></div>
+        <div><dt>3</dt><dd>languages, two scripts</dd></div>
+        <div><dt>1</dt><dd>pair of hands, brief to final file</dd></div>
+      </dl>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work" class="grid sec" aria-label="Selected work">
+  <header class="sec-head" data-draw>
+    <span class="label">Selected work</span>
+    <h2>Six projects, <em>chosen on purpose.</em></h2>
+    <p>Each one shows a different muscle: an identity, a product world, a system, a content engine, a campaign and a film language.</p>
+  </header>
+
+  <article class="proj">
+    <div class="proj-meta" data-draw>
+      <span class="idx">01</span>
+      <h3>DuLight</h3>
+      <p class="premise">A lighting company outgrew its logo. I rebuilt the identity around the one thing it sells: a point of light.</p>
+      <dl><dt>Role</dt><dd>Identity, logo system, rollout</dd><dt>Scope</dt><dd>Wordmark, variations, stationery, signage, social plan</dd><dt>Where</dt><dd>In-house, 2021–24</dd></dl>
+    </div>
+    <div class="proj-media">
+      <figure class="shot contain" data-draw style="--c:15;--r:5;--rn:3"><img loading="lazy" src="assets/img/dulight-logo.webp" alt="DuLight wordmark with the tagline Redefining Light"><figcaption>Wordmark</figcaption></figure>
+      <figure class="shot" data-draw style="--c:15;--r:5;--rn:2"><img loading="lazy" src="assets/img/dulight-brand.webp" alt="DuLight brand applications: colour lockups, signage, embossed stationery and business cards"><figcaption>Applications</figcaption></figure>
+      <figure class="shot contain" data-draw style="--c:15;--r:2;--rn:1"><img loading="lazy" src="assets/img/dulight-evolution.webp" alt="Logo evolution from the old serif DuLight mark to the new wordmark"><figcaption>Before → after</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-meta" data-draw>
+      <span class="idx">02</span>
+      <h3>Ethra</h3>
+      <p class="premise">Four fragrances, one quiet-luxury world. Each scent got its own colour, light and material, and they still sit on one shelf.</p>
+      <dl><dt>Role</dt><dd>Art direction, product visuals, 3D</dd><dt>Scope</dt><dd>Luna, Nurai, Aura, Feray; reels; retail kiosk</dd><dt>Type</dt><dd>Fragrance · Retail</dd></dl>
+    </div>
+    <div class="proj-media">
+      <figure class="shot" data-draw style="--c:15;--r:4;--rn:2"><img loading="lazy" src="assets/img/ethra-hero.webp" alt="Four Ethra perfume bottles in green, amber, blue and purple"><figcaption>Range</figcaption></figure>
+      <figure class="shot" data-draw style="--c:15;--r:6;--rn:3"><img loading="lazy" src="assets/img/ethra-products.webp" alt="Ethra Luna product visuals in warm amber settings"><figcaption>Luna</figcaption></figure>
+      <figure class="shot" data-draw style="--c:15;--r:8;--rn:4"><img loading="lazy" src="assets/img/ethra-kiosk.webp" alt="3D visualisations of the Ethra retail kiosk from several angles"><figcaption>Kiosk, 3D</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-meta" data-draw>
+      <span class="idx">03</span>
+      <h3>New City Light</h3>
+      <p class="premise">A complete identity system for a lighting supplier in Baghdad, bilingual from the first sketch, and specified down to the rubber stamp.</p>
+      <dl><dt>Role</dt><dd>Identity system, guidelines</dd><dt>Scope</dt><dd>Logo suite (EN/AR), guidelines v1.0, stationery, signage, fleet, social templates</dd><dt>Type</dt><dd>Brand identity</dd></dl>
+    </div>
+    <div class="proj-media">
+      <figure class="shot" data-draw style="--c:15;--r:8;--rn:4"><img loading="lazy" src="assets/img/ncl-storefront.webp" alt="New City Light storefront sign mockup"><figcaption>Signage</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:5;--rn:4"><img loading="lazy" src="assets/img/ncl-cards.webp" alt="New City Light business cards in orange and navy"><figcaption>Cards</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:5;--rn:4"><img loading="lazy" src="assets/img/ncl-truck.webp" alt="New City Light truck livery"><figcaption>Fleet</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:5;--rn:4"><img loading="lazy" src="assets/img/ncl-post1.webp" alt="New City Light social post: Linear Perfection"><figcaption>Social</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-meta" data-draw>
+      <span class="idx">04</span>
+      <h3>ConnectIn</h3>
+      <p class="premise">A business-setup firm with inconsistent posts became a recognisable feed, then got a face: Sarah, a recurring AI brand persona.</p>
+      <dl><dt>Role</dt><dd>Social identity, character design, content</dd><dt>Scope</dt><dd>Carousel system, layout rules, AI persona, short-form video</dd><dt>Type</dt><dd>Social · Content system</dd></dl>
+    </div>
+    <div class="proj-media">
+      <figure class="shot" data-draw style="--c:15;--r:9;--rn:4"><img loading="lazy" src="assets/img/connectin-posts.webp" alt="Ten ConnectIn social posts sharing one layout system"><figcaption>Feed system</figcaption></figure>
+      <figure class="shot" data-draw style="--c:15;--r:7;--rn:3"><img loading="lazy" src="assets/img/connectin-sarah.webp" alt="Sarah, an AI-generated brand persona: character sheet, scenes and video frame"><figcaption>Sarah — AI persona</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-meta" data-draw>
+      <span class="idx">05</span>
+      <h3>Zee Real Estate</h3>
+      <p class="premise">Property content that looks like one brand wherever it lands: carousels, lead ads, a festival kiosk and cinematic reels.</p>
+      <dl><dt>Role</dt><dd>Visual lead, shoot &amp; edit, 3D</dd><dt>Scope</dt><dd>Carousel series, ad system (post + story), kiosk, AI reels</dd><dt>Type</dt><dd>Real estate · Campaign</dd></dl>
+    </div>
+    <div class="proj-media">
+      <figure class="shot" data-draw style="--c:15;--r:5;--rn:2"><img loading="lazy" src="assets/img/zee-carousels.webp" alt="Five black and white Zee Real Estate carousel covers"><figcaption>Carousels</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:5;--rn:6"><img loading="lazy" src="assets/img/zee-ad1.webp" alt="Zee Real Estate ad: Buy in Dubai, get a 10-year Golden Visa"><figcaption>Lead ad</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:5;--rn:6"><img loading="lazy" src="assets/img/zee-ad3.webp" alt="Zee Real Estate ad: Live life, king style"><figcaption>Lead ad</figcaption></figure>
+      <figure class="shot top" data-draw style="--c:5;--r:5;--rn:6"><img loading="lazy" src="assets/img/zee-ad2s.webp" alt="Zee Real Estate story ad: sea-view Dubai apartment"><figcaption>Story</figcaption></figure>
+      <figure class="shot" data-draw style="--c:15;--r:6;--rn:3"><img loading="lazy" src="assets/img/zee-reels.webp" alt="Four frames from AI-generated cinematic reels for Zee Real Estate"><figcaption>Reels — stills</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-meta" data-draw>
+      <span class="idx">06</span>
+      <h3>Ary &amp; Maz</h3>
+      <p class="premise">AI as a camera, not a slot machine. An anchor character, a set of environments and a shot list turned into a film language for a developer.</p>
+      <dl><dt>Role</dt><dd>Creative direction, AI production</dd><dt>Scope</dt><dd>Moodboards, anchor character, cinematic sequences</dd><dt>Type</dt><dd>Real estate · Film</dd></dl>
+    </div>
+    <div class="proj-media">
+      <figure class="shot" data-draw style="--c:5;--r:8;--rn:8"><img loading="lazy" src="assets/img/arymaz-moodboard.webp" alt="Moodboard of AI-generated frames: a woman in a cream suit and architectural details"><figcaption>Moodboard</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:8;--rn:8"><img loading="lazy" src="assets/img/arymaz-video.webp" alt="Frame from the Ary and Maz cinematic sequence showing a building at dusk"><figcaption>Sequence — still</figcaption></figure>
+      <figure class="shot" data-draw style="--c:5;--r:8;--rn:8"><img loading="lazy" src="assets/img/arymaz-boy.webp" alt="Frame of a boy holding a glowing firefly in cupped hands"><figcaption>Short film — still</figcaption></figure>
+    </div>
+  </article>
+</section>
+
+<!-- ============ MORE ============ -->
+<section id="more" class="grid sec" aria-label="More work">
+  <header class="sec-head" data-draw>
+    <span class="label">Also</span>
+    <h2>Character, space, <em>sport, street.</em></h2>
+  </header>
+  <div class="more">
+    <figure class="shot" data-draw style="--c:11;--r:6;--rn:4"><img loading="lazy" src="assets/img/mirage-hero.webp" alt="Mirage: architectural visualisation of a modern Kerala villa with a family in front"><figcaption>Mirage — architectural visualisation</figcaption></figure>
+    <figure class="shot" data-draw style="--c:7;--r:6;--rn:5"><img loading="lazy" src="assets/img/gilroy-saeed.webp" alt="Saeed, a 3D character created to lead Gilroy's social media, shown in three poses"><figcaption>Gilroy — Saeed, character-led social</figcaption></figure>
+    <figure class="shot top" data-draw style="--c:4;--r:6;--rn:4"><img loading="lazy" src="assets/img/photo-portrait2.webp" alt="Corporate portrait of a man in a white shirt and blue tie"><figcaption>Photography — portrait</figcaption></figure>
+    <figure class="shot" data-draw style="--c:9;--r:5;--rn:3"><img loading="lazy" src="assets/img/wrapshap.webp" alt="Wrapshap graffiti-style logo on a spray-painted mat"><figcaption>Wrapshap — identity, two routes</figcaption></figure>
+    <figure class="shot" data-draw style="--c:5;--r:5;--rn:6"><img loading="lazy" src="assets/img/icl.webp" alt="Imama Cricket League season two launch post with a batsman under floodlights"><figcaption>Imama Cricket League — S2</figcaption></figure>
+    <figure class="shot" data-draw style="--c:4;--r:5;--rn:4"><img loading="lazy" src="assets/img/photo-arch1.webp" alt="Photograph of a Dubai metro station against a blue sky"><figcaption>Photography — Dubai</figcaption></figure>
+    <figure class="shot" data-draw style="--c:4;--r:5;--rn:4"><img loading="lazy" src="assets/img/photo-arch2.webp" alt="Photograph of a street lamp above trees against a pale sky"><figcaption>Photography — Dubai</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="grid sec" aria-label="Contact">
+  <div class="contact" data-draw>
+    <span class="label">Next</span>
+    <h2>Let’s <span class="mv hov">m<i>o</i><i>o</i><i>o</i><i>o</i><i>o</i><b>o</b>ve</span> your brand.</h2>
+    <a class="mail" href="mailto:shibilisbl9@gmail.com">shibilisbl9@gmail.com</a>
+    <ul class="links">
+      <li><a href="https://www.linkedin.com/in/shibili-nuhman/" rel="noopener">LinkedIn ↗</a></li>
+      <li><a href="tel:+971566330468">+971 56 633 0468</a></li>
+      <li><a href="resume/">Résumé</a></li>
+      <li><a href="resume/Shibili-Nuhman-Resume.pdf" download>Download PDF ↓</a></li>
+    </ul>
+  </div>
+  <footer class="foot">
+    <span>© 2026 Shibili Nuhman</span>
+    <span>Set on a grid. Drawn by a cursor.</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+</section>
+
+</main>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
